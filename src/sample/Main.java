@@ -12,23 +12,18 @@ import javafx.scene.shape.*;
 
 public class Main extends Application {
 
+    public static final int BOARD_WIDTH = 500;
+    public static final int BOARD_HEIGHT = 500;
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        Rectangle r = new Rectangle();
-        r.setX(150);
-        r.setY(150);
-        r.setWidth(100);
-        r.setHeight(100);
-        r.setFill(Paint.valueOf("YELLOW"));
+        // Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-        Group myRoot = new Group();
-        Scene myScene = new Scene(myRoot, 300, 275);
+        primaryStage.setTitle("HamPathGame");
+        Board myBoard = new Board( BOARD_WIDTH, BOARD_HEIGHT);
 
-        myRoot.getChildren().add(r);
-        myScene.setFill(Paint.valueOf("RED"));
-        primaryStage.setScene(myScene);
+        primaryStage.setScene(myBoard.getScene());
         primaryStage.show();
     }
 
