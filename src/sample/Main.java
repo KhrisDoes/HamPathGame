@@ -23,6 +23,8 @@ public class Main extends Application {
         primaryStage.setTitle("HamPathGame");
         Board myBoard = new Board( BOARD_WIDTH, BOARD_HEIGHT);
 
+        Controller controller = new Controller(myBoard);
+
         primaryStage.setScene(myBoard.getScene());
         primaryStage.show();
     }
