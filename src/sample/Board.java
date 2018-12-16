@@ -1,23 +1,28 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
+
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeType;
+import javafx.scene.control.Button;
+
+
 
 public class Board{
 
 
     private Scene scene;
 
+    private BorderPane border;
     private Tile[][] board;
+    private HBox topHbox;
 
     private int numberOfTilesHorizontal;
     private int numberOfTilesVertical;
@@ -30,20 +35,46 @@ public class Board{
 
     public Board(double width, double height, Position goal){
 
+        this.goal = goal;
+
         numberOfTilesHorizontal = (int) (width / 50);
         numberOfTilesVertical = (int) (height/ 50);
         start = new Position(numberOfTilesHorizontal / 2, 0);
 
-        this.goal = goal;
+//        topHbox = new HBox();
+//        initHbox();
+
+
 
         controller = new Controller(this, goal);
-
         board = new Tile[numberOfTilesHorizontal][numberOfTilesVertical];
 
-        Group root = initializeBoard();
 
-        scene = new Scene(root, width, height, Paint.valueOf("RED"));
+        border = new BorderPane();
+
+        border.setCenter(initializeBoard());
+//        border.getCenter().addEventFilter(KeyEvent.ANY, keyListener);
+        // border.setTop(topHbox);
+
+        scene = new Scene(border, width, height, Paint.valueOf("RED"));
         scene.setOnKeyPressed(keyListener);
+
+    }
+
+    public void initHbox(){
+        Button reset = new Button("RETRY");
+        reset.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                resetScene();
+            }
+        });
+
+        topHbox.getChildren().add(reset);
+
+    }
+
+    public void resetScene(){
 
     }
 
@@ -89,7 +120,6 @@ public class Board{
         }
 
         board[goal.xPosition][goal.yPosition].setFill(Color.GREEN);
-
         addTilesToScene(root);
 
 

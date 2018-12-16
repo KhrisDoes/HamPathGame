@@ -2,12 +2,7 @@ package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import javafx.scene.shape.*;
 
 
 public class Main extends Application {
@@ -20,6 +15,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         // Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+
+
+        SceneManager.addScreen("win", new WinPane().getPane());
 
         primaryStage.setTitle("HamPathGame");
         Board myBoard = new Board( BOARD_WIDTH, BOARD_HEIGHT, GOAL_POSITION);

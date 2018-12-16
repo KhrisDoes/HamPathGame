@@ -12,7 +12,7 @@ public class Controller {
     private  Position currentPosition;
     private Position goalPosition;
     private  Board board;
-    private int counter; // number of moves / number of tiles covered
+    private int counter; // number of moves = number of tiles covered
 
 
     public Controller(Board board, Position goalPosition){
@@ -46,7 +46,7 @@ public class Controller {
             counter++;
 
             if(hasWon()){
-                System.out.println("YOU WON");
+                board.getScene().setRoot(new WinPane().getPane());
             }
 
         }
@@ -63,13 +63,10 @@ public class Controller {
             counter++;
 
             if(hasWon()){
-                System.out.println("YOU WON");
-
+                board.getScene().setRoot(new WinPane().getPane());
             }
 
         }
-        System.out.printf("Counter: " + counter);
-
 
 
     }
@@ -81,7 +78,7 @@ public class Controller {
             updateBoard();
             counter++;
             if(hasWon()){
-                System.out.println("YOU WON");
+                board.getScene().setRoot(new WinPane().getPane());
             }
 
         }
@@ -97,7 +94,7 @@ public class Controller {
             counter++;
 
             if(hasWon()){
-                System.out.println("YOU WON");
+                board.getScene().setRoot(new WinPane().getPane());
             }
         }
     }

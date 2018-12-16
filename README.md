@@ -7,3 +7,7 @@ and a mini-game in pokemon.
 ( Video not made by me - Kudos to @PurpleRodri for explaining in the video)
 
 [![Explanation included! :)](https://imgur.com/7zOsPmZ.png)](https://www.youtube.com/embed/9OXT93-3-Pc?start=432&end=462&version=3 "Explanation included :)")
+
+# Working Demo 
+
+![Alt Text](https://media.giphy.com/media/t6a1qv8we5KkLwmbCd/giphy.gif)
