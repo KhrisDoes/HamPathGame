@@ -12,8 +12,9 @@ import javafx.scene.shape.*;
 
 public class Main extends Application {
 
-    public static final int BOARD_WIDTH = 500;
-    public static final int BOARD_HEIGHT = 500;
+    public static final int BOARD_WIDTH = 300;
+    public static final int BOARD_HEIGHT = 300;
+    public static final Position GOAL_POSITION = new Position(4,4);
 
 
     @Override
@@ -21,13 +22,12 @@ public class Main extends Application {
         // Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
         primaryStage.setTitle("HamPathGame");
-        Board myBoard = new Board( BOARD_WIDTH, BOARD_HEIGHT);
-
-        Controller controller = new Controller(myBoard);
+        Board myBoard = new Board( BOARD_WIDTH, BOARD_HEIGHT, GOAL_POSITION);
 
         primaryStage.setScene(myBoard.getScene());
         primaryStage.show();
     }
+
 
 
     public static void main(String[] args) {

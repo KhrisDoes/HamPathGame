@@ -24,17 +24,23 @@ public class Board{
 
     private Controller controller;
 
+    private Position goal;
+    private Position start;
 
-    public Board(double width, double height){
+
+    public Board(double width, double height, Position goal){
 
         numberOfTilesHorizontal = (int) (width / 50);
         numberOfTilesVertical = (int) (height/ 50);
+        start = new Position(numberOfTilesHorizontal / 2, 0);
 
-        controller = new Controller(this);
+        this.goal = goal;
+
+        controller = new Controller(this, goal);
 
         board = new Tile[numberOfTilesHorizontal][numberOfTilesVertical];
 
-        Group root = initializeBoard(width, height);
+        Group root = initializeBoard();
 
         scene = new Scene(root, width, height, Paint.valueOf("RED"));
         scene.setOnKeyPressed(keyListener);
@@ -44,6 +50,7 @@ public class Board{
     private EventHandler<KeyEvent> keyListener = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent keyEvent) {
+
             if(keyEvent.getCode() == KeyCode.UP){
                 controller.moveUp();
             }else if(keyEvent.getCode() == KeyCode.DOWN){
@@ -58,11 +65,8 @@ public class Board{
 
     };
 
-    private void addKeyListener(){
 
-    }
-
-    public Group initializeBoard(double width, double height){
+    public Group initializeBoard(){
 
 
         Group root = new Group();
@@ -70,27 +74,22 @@ public class Board{
 
 
         for(int j = 0; j < numberOfTilesVertical; j++){
-
-
             for(int i = 0; i < numberOfTilesHorizontal; i++){
 
-                if (j == (int) (numberOfTilesHorizontal / 2) && i == 0) {
-                    // root.getChildren().add(new Tile(j * 50, i * 50, 50, 50, Color.BLUE, Color.BLACK));
+                if (j == goal.xPosition && i == goal.yPosition) {
                     board[j][i] = new Tile(j * 50, i * 50, 50, 50, Color.RED, Color.BLACK);
-
-                }else {
-
-                    // root.getChildren().add(new Tile(j * 50, i * 50, 50, 50, Color.YELLOW, Color.BLACK));
-
+                }else if(j == start.xPosition && i == 0) {
+                    board[j][i] = new Tile(j * 50, i * 50, 50, 50, Color.RED, Color.BLACK);
+                }else{
                     board[j][i] = new Tile(j * 50, i * 50, 50, 50, Color.YELLOW, Color.BLACK);
-
-
                 }
+
             }
 
         }
 
-        board[3][4].setFill(Color.GREEN);
+        board[goal.xPosition][goal.yPosition].setFill(Color.GREEN);
+
         addTilesToScene(root);
 
 
@@ -124,5 +123,9 @@ public class Board{
 
     public Tile getTile(int x, int y){
         return board[x][y];
+    }
+
+    public int getNumberOfTiles(){
+        return numberOfTilesHorizontal * numberOfTilesVertical;
     }
 }
