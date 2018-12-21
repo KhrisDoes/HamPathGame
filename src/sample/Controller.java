@@ -56,6 +56,7 @@ public class Controller {
 
 
     public  void moveRight(){
+        System.out.println("# of tiles horizontal: " + board.getNumberOfTilesHorizontal());
         if(currentPosition.xPosition != (board.getNumberOfTilesHorizontal() - 1)  && checkPreviousTile(currentPosition.xPosition + 1, currentPosition.yPosition)){
             currentPosition.xPosition += 1;
 
@@ -88,6 +89,8 @@ public class Controller {
     }
 
     public  void moveDown(){
+        System.out.println("# of tiles vertical " + board.getNumberOfTilesVertical());
+
         if(currentPosition.yPosition != (board.getNumberOfTilesVertical() - 1)  && checkPreviousTile(currentPosition.xPosition, currentPosition.yPosition + 1) ){
             currentPosition.yPosition += 1;
             updateBoard();

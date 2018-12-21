@@ -7,9 +7,9 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static final int BOARD_WIDTH = 300;
-    public static final int BOARD_HEIGHT = 300;
-    public static final Position GOAL_POSITION = new Position(4,4);
+    public static final int BOARD_WIDTH = 450;
+    public static final int BOARD_HEIGHT = 600;
+    public static final Position GOAL_POSITION = new Position(2,5);
 
 
     @Override

@@ -61,6 +61,13 @@ public class Board{
 
     }
 
+    /**
+     * NOTE: - How to reset
+     *       - Refactor to use controller
+     *       https://stackoverflow.com/questions/36612724/javafx-event-handler-no-longer-working
+     */
+
+
     public void initHbox(){
         Button reset = new Button("RETRY");
         reset.setOnAction(new EventHandler<ActionEvent>() {
@@ -104,8 +111,8 @@ public class Board{
 
 
 
-        for(int j = 0; j < numberOfTilesVertical; j++){
-            for(int i = 0; i < numberOfTilesHorizontal; i++){
+        for(int j = 0; j < numberOfTilesHorizontal; j++){
+            for(int i = 0; i < numberOfTilesVertical; i++){
 
                 if (j == goal.xPosition && i == goal.yPosition) {
                     board[j][i] = new Tile(j * 50, i * 50, 50, 50, Color.RED, Color.BLACK);
