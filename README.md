@@ -8,6 +8,10 @@ and a mini-game in pokemon.
 
 [![Explanation included! :)](https://imgur.com/7zOsPmZ.png)](https://www.youtube.com/embed/9OXT93-3-Pc?start=432&end=462&version=3 "Explanation included :)")
 
+# Instructions
+Movement: WASD
+Reset: ESC (Escape) key
+
 # Working Demo 
 
 ![Alt Text](https://media.giphy.com/media/t6a1qv8we5KkLwmbCd/giphy.gif)
