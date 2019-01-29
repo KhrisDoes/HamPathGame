@@ -32,17 +32,26 @@ public class Board{
     private Position goal;
     private Position start;
 
+    private double width;
+    private double height;
+
 
     public Board(double width, double height, Position goal){
+        init(width, height, goal);
+    }
+
+    public void init(double width, double height, Position goal){
 
         this.goal = goal;
+        this.width = width;
+        this.height = height;
 
         numberOfTilesHorizontal = (int) (width / 50);
         numberOfTilesVertical = (int) (height/ 50);
         start = new Position(numberOfTilesHorizontal / 2, 0);
 
-//        topHbox = new HBox();
-//        initHbox();
+        topHbox = new HBox();
+        initHbox();
 
 
 
@@ -53,12 +62,12 @@ public class Board{
         border = new BorderPane();
 
         border.setCenter(initializeBoard());
-//        border.getCenter().addEventFilter(KeyEvent.ANY, keyListener);
-        // border.setTop(topHbox);
+
+        //        border.getCenter().addEventFilter(KeyEvent.ANY, keyListener);
+        // border.setTop(topHbox); Once this is added, listener no longer works. Tried adding it to border and border.getCenter() directly with no success
 
         scene = new Scene(border, width, height, Paint.valueOf("RED"));
         scene.setOnKeyPressed(keyListener);
-
     }
 
     /**
@@ -73,7 +82,7 @@ public class Board{
         reset.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                resetScene();
+
             }
         });
 
@@ -81,9 +90,6 @@ public class Board{
 
     }
 
-    public void resetScene(){
-
-    }
 
     private EventHandler<KeyEvent> keyListener = new EventHandler<KeyEvent>() {
         @Override
@@ -97,7 +103,11 @@ public class Board{
                 controller.moveLeft();
             }else if(keyEvent.getCode() == KeyCode.RIGHT){
                 controller.moveRight();
+            }else if(keyEvent.getCode() == KeyCode.ESCAPE) {
+              border.setCenter(initializeBoard());
+              controller.resetPosition();
             }
+
             keyEvent.consume();
         }
 

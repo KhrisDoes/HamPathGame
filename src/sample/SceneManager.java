@@ -1,22 +1,27 @@
 package sample;
 
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class SceneManager {
 
 
-    private static Map<String, Pane> screenMap = new HashMap<>();
+    private static int currentIndex = 0;
+    private static List<Pane> scenes = new ArrayList<>();
 
-    public static void addScreen(String name, Pane pane){
-        screenMap.put(name, pane);
+    public static void addScreen(Pane pane){
+        scenes.add(pane);
     }
 
-    public static Pane getScreen(String name){
-        return screenMap.get(name);
+    public static Pane getNextScene(){
+        currentIndex += 1;
+        return scenes.get(currentIndex - 1);
     }
+
 
 
 

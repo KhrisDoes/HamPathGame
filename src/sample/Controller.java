@@ -3,6 +3,7 @@ package sample;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
@@ -10,6 +11,7 @@ public class Controller {
 
 
     private  Position currentPosition;
+    private Position initialPosition;
     private Position goalPosition;
     private  Board board;
     private int counter; // number of moves = number of tiles covered
@@ -19,7 +21,8 @@ public class Controller {
 
         this.board = board;
         this.goalPosition = goalPosition;
-        currentPosition = new Position(board.getNumberOfTilesHorizontal() / 2, 0);
+        this.initialPosition = new Position(board.getNumberOfTilesHorizontal() / 2, 0);
+        currentPosition = initialPosition;
         counter = 0;
 
 
@@ -35,8 +38,8 @@ public class Controller {
     }
 
     public boolean nextToGoal(){
-        return Math.abs(currentPosition.xPosition - goalPosition.xPosition) == 1 || // If next to goal on the x
-               Math.abs(currentPosition.yPosition - goalPosition.yPosition) == 1;   // or next to goal on the y
+        return Math.abs(currentPosition.xPosition - goalPosition.xPosition) == 1 || // If next to goal on the x-axis
+               Math.abs(currentPosition.yPosition - goalPosition.yPosition) == 1;   // or next to goal on the y-axis
     }
 
     public  void moveLeft(){
@@ -46,6 +49,7 @@ public class Controller {
             counter++;
 
             if(hasWon()){
+
                 board.getScene().setRoot(new WinPane().getPane());
             }
 
@@ -56,7 +60,6 @@ public class Controller {
 
 
     public  void moveRight(){
-        System.out.println("# of tiles horizontal: " + board.getNumberOfTilesHorizontal());
         if(currentPosition.xPosition != (board.getNumberOfTilesHorizontal() - 1)  && checkPreviousTile(currentPosition.xPosition + 1, currentPosition.yPosition)){
             currentPosition.xPosition += 1;
 
@@ -89,7 +92,6 @@ public class Controller {
     }
 
     public  void moveDown(){
-        System.out.println("# of tiles vertical " + board.getNumberOfTilesVertical());
 
         if(currentPosition.yPosition != (board.getNumberOfTilesVertical() - 1)  && checkPreviousTile(currentPosition.xPosition, currentPosition.yPosition + 1) ){
             currentPosition.yPosition += 1;
@@ -105,6 +107,19 @@ public class Controller {
     private  void updateBoard(){
 
         board.updateBoard(currentPosition.xPosition, currentPosition.yPosition, Color.RED);
+    }
+
+    public void resetPosition(){
+
+        currentPosition.xPosition = board.getNumberOfTilesHorizontal() / 2;
+        currentPosition.yPosition = 0;
+        counter = 0;
+    }
+
+
+
+    public void setCurrentPosition(Position position){
+        this.currentPosition = position;
     }
 
 
